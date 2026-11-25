@@ -1,0 +1,58 @@
+{
+  "couple": {
+    "bride": "Trisha",
+    "groom": "Arindam",
+    "brideDescription": "A heart full of kindness, joy and dreams.",
+    "groomDescription": "A smile that makes every day brighter."
+  },
+  "wedding": {
+    "dateLabel": "Your Wedding Date · Update Me",
+    "isoDate": "2027-02-14T10:00:00+05:30",
+    "city": "Your City, India",
+    "message": "With the blessings of our families, we invite you to be part of our beautiful beginning."
+  },
+  "events": [
+    {
+      "name": "Cocktail Party",
+      "date": "Add event date and time",
+      "description": "An evening of laughter, music and celebration.",
+      "venue": "Add venue name and address",
+      "mapUrl": "https://maps.google.com/"
+    },
+    {
+      "name": "Haldi Ceremony",
+      "date": "Add event date and time",
+      "description": "A bright celebration filled with love and blessings.",
+      "venue": "Add venue name and address",
+      "mapUrl": "https://maps.google.com/"
+    },
+    {
+      "name": "The Wedding Ceremony",
+      "date": "Add event date and time",
+      "description": "Join us as we begin our forever together.",
+      "venue": "Add venue name and address",
+      "mapUrl": "https://maps.google.com/"
+    },
+    {
+      "name": "Wedding Soirée",
+      "date": "Add event date and time",
+      "description": "Celebrate, dine and dance with us.",
+      "venue": "Add venue name and address",
+      "mapUrl": "https://maps.google.com/"
+    }
+  ],
+  "gallery": [
+    {
+      "caption": "The beginning",
+      "symbol": "♡"
+    },
+    {
+      "caption": "Together, always",
+      "symbol": "✿"
+    },
+    {
+      "caption": "Beautiful moments",
+      "symbol": "❧"
+    }
+  ]
+}
