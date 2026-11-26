@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import config from "../wedding.config.json";
 
 function Reveal({ children, className = "" }) {
@@ -51,12 +51,34 @@ export default function Home() {
   const [opened, setOpened] = useState(false);
   const [opening, setOpening] = useState(false);
   const [musicOn, setMusicOn] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ name: "", attendance: "Joyfully accepts", guests: "1", message: "" });
+  const musicRef = useRef(null);
+
+  useEffect(() => {
+    const audio = musicRef.current;
+    if (!audio) return;
+
+    const startOnLoad = () => {
+      audio.play().then(() => setMusicOn(true)).catch(() => setMusicOn(false));
+    };
+
+    startOnLoad();
+
+    const enableAfterGesture = () => {
+      if (audio.paused) startOnLoad();
+    };
+    window.addEventListener("pointerdown", enableAfterGesture, { once: true });
+    window.addEventListener("keydown", enableAfterGesture, { once: true });
+
+    return () => {
+      window.removeEventListener("pointerdown", enableAfterGesture);
+      window.removeEventListener("keydown", enableAfterGesture);
+    };
+  }, []);
 
   const openInvitation = () => {
     if (opening || opened) return;
     setOpening(true);
+    musicRef.current?.play().then(() => setMusicOn(true)).catch(() => setMusicOn(false));
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setOpened(true);
       return;
@@ -64,17 +86,19 @@ export default function Home() {
     window.setTimeout(() => setOpened(true), 1200);
   };
 
-  const update = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-  const submit = (e) => {
-    e.preventDefault();
-    const entries = JSON.parse(localStorage.getItem("wedding-rsvps") || "[]");
-    entries.push({ ...form, submittedAt: new Date().toISOString() });
-    localStorage.setItem("wedding-rsvps", JSON.stringify(entries));
-    setSubmitted(true);
+  const toggleMusic = () => {
+    if (!musicRef.current) return;
+    if (musicRef.current.paused) {
+      musicRef.current.play().then(() => setMusicOn(true)).catch(() => setMusicOn(false));
+    } else {
+      musicRef.current.pause();
+      setMusicOn(false);
+    }
   };
 
   return (
     <>
+      <audio ref={musicRef} src="/wedding-music.mp3" loop preload="auto" autoPlay />
       {!opened ? (
         <main className={`cover${opening ? " is-opening" : ""}`}>
           <WeddingAtmosphere />
@@ -140,7 +164,6 @@ export default function Home() {
             </h1>
             <p className="date-line">{config.wedding.dateLabel}</p>
             <p className="place-line">{config.wedding.city}</p>
-            <div className="palace">⌁　✿　⌁</div>
             <p className="scroll-note">SCROLL TO EXPLORE ↓</p>
           </section>
 
@@ -151,21 +174,6 @@ export default function Home() {
             </Reveal>
             <div className="couple-grid">
               <Reveal className="couple-card">
-                <p className="couple-role">The Groom</p>
-                <div className="portrait">
-                  <div className="portrait-placeholder">♚</div>
-                </div>
-                <h3>Lalit</h3>
-                <p>
-                  Son of Smt. Manjulata Behera &amp;
-                  <br />
-                  Shri Prasanta Kumar Majhi
-                </p>
-              </Reveal>
-              <div className="couple-love" aria-label="Love symbol">
-                <span>♥</span>
-              </div>
-              <Reveal className="couple-card">
                 <p className="couple-role">The Bride</p>
                 <div className="portrait">
                   <div className="portrait-placeholder">♛</div>
@@ -175,6 +183,21 @@ export default function Home() {
                   Daughter of Smt. Geetarani Sahoo &amp;
                   <br />
                   Shri Kanhu Charan Behera
+                </p>
+              </Reveal>
+              <div className="couple-love" aria-label="Love symbol">
+                <span>♥</span>
+              </div>
+              <Reveal className="couple-card">
+                <p className="couple-role">The Groom</p>
+                <div className="portrait">
+                  <div className="portrait-placeholder">♚</div>
+                </div>
+                <h3>Lalit</h3>
+                <p>
+                  Son of Smt. Manjulata Behera &amp;
+                  <br />
+                  Shri Prasanta Kumar Majhi
                 </p>
               </Reveal>
             </div>
@@ -250,67 +273,6 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="rsvp section">
-            <Reveal>
-              <p className="eyebrow">KINDLY REPLY</p>
-              <h2>Guest Book & RSVP</h2>
-              <p className="muted">
-                Your presence will make our celebration complete.
-              </p>
-            </Reveal>
-            {submitted ? (
-              <div className="success">
-                Thank you, {form.name}! Your response has been saved on this
-                device.
-              </div>
-            ) : (
-              <form onSubmit={submit}>
-                <label>
-                  Your name
-                  <input
-                    required
-                    name="name"
-                    value={form.name}
-                    onChange={update}
-                    placeholder="Enter your name"
-                  />
-                </label>
-                <label>
-                  Will you attend?
-                  <select
-                    name="attendance"
-                    value={form.attendance}
-                    onChange={update}
-                  >
-                    <option>Joyfully accepts</option>
-                    <option>Regretfully declines</option>
-                  </select>
-                </label>
-                <label>
-                  Number of guests
-                  <select name="guests" value={form.guests} onChange={update}>
-                    {[1, 2, 3, 4, 5, 6].map((n) => (
-                      <option key={n}>{n}</option>
-                    ))}
-                  </select>
-                </label>
-                <label>
-                  Leave a message
-                  <textarea
-                    name="message"
-                    value={form.message}
-                    onChange={update}
-                    placeholder="Your wishes for the couple..."
-                    rows="3"
-                  />
-                </label>
-                <button className="submit" type="submit">
-                  SEND YOUR REPLY ♥
-                </button>
-              </form>
-            )}
-          </section>
-
           <footer className="footer">
             <div className="footer-flower">✿</div>
             <p className="eyebrow">WITH LOVE</p>
@@ -326,7 +288,7 @@ export default function Home() {
           <button
             className="music"
             aria-label="Toggle music"
-            onClick={() => setMusicOn(!musicOn)}
+            onClick={toggleMusic}
           >
             {musicOn ? "♫ On" : "♫"}
           </button>

@@ -8,7 +8,7 @@
   "wedding": {
     "dateLabel": "06-12-2026",
     "isoDate": "2026-12-06T10:00:00+05:30",
-    "city": "Kataka, Odisha,India",
+    "city": "Kataka, Odisha, India",
     "message": "With the blessings of our families, we invite you to be part of our beautiful beginning."
   },
   "events": [
@@ -16,21 +16,21 @@
       "name": "Haldi Ceremony",
       "date": "05-12-2026 11:00 AM",
       "description": "A bright celebration filled with love and blessings.",
-      "venue": "Hotel Bishal inn, Kataka, Odisha,India",
+      "venue": "Hotel Bishal inn, Kataka, Odisha, India",
       "mapUrl": "https://maps.app.goo.gl/7SYC2CcWEzY45dAs9"
     },
     {
       "name": "Mehendi Ceremony",
       "date": "05-12-2026 04:00 PM",
       "description": "A bright celebration filled with love and blessings.",
-      "venue": "Hotel Bishal inn, Kataka, Odisha,India",
+      "venue": "Hotel Bishal inn, Kataka, Odisha, India",
       "mapUrl": "https://maps.app.goo.gl/7SYC2CcWEzY45dAs9"
     },
     {
       "name": "The Wedding Ceremony & Reception",
       "date": "06-12-2026 07:30 PM Onwards",
       "description": "Join us as we begin our forever together.",
-      "venue": "Yashoda garden 42 mouza, Kataka odisha,India",
+      "venue": "Yashoda garden 42 mouza, Kataka odisha, India",
       "mapUrl": "https://maps.app.goo.gl/KyB5XpRwakqA5xXB6"
     }
   ],
