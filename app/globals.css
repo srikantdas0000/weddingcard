@@ -19,6 +19,11 @@
 .wedding-divider{width:100%;height:120px;line-height:0;background:#fffaf5;overflow:hidden}
 .wedding-divider img{width:100%;height:100%;display:block;object-fit:cover}
 
+.hero{overflow:hidden}
+.hero-video{position:absolute;z-index:0;inset:0;width:100%;height:100%;object-fit:cover}
+.hero:after{content:"";position:absolute;z-index:0;inset:0;background:rgba(255,249,240,.38)}
+.hero>*:not(.hero-video){position:relative;z-index:1}
+
 .cover{min-height:100svh;width:100%;max-width:none;padding:42px 20px;cursor:default;background:radial-gradient(ellipse at 18% 18%,#d8aaa340,transparent 34%),radial-gradient(ellipse at 83% 82%,#d5aaa340,transparent 35%),linear-gradient(135deg,#f4e9e1,#fffaf5 52%,#efded6);box-shadow:none}
 .cover:before,.cover:after{font-size:44px;opacity:.35}
 .cover:before{top:8%;left:-8%}

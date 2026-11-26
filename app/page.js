@@ -99,6 +99,9 @@ export default function Home() {
       <WeddingAtmosphere />
       <button className="back" onClick={() => setOpened(false)}>← Back</button>
       <section className="hero">
+        <video className="hero-video" autoPlay muted loop playsInline poster="/romantic-blush-palace.png">
+          <source src="/together-families-hero.mp4" type="video/mp4" />
+        </video>
         <p className="eyebrow">TOGETHER WITH THEIR FAMILIES</p>
         <p className="invite-line">request the pleasure of your company</p>
         <h1><span>{config.couple.bride}</span><em>&</em><span>{config.couple.groom}</span></h1>
