@@ -1,10 +1,11 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Arindam & Trisha — Wedding Invitation",
-  description: "A celebration of love. Join us for the wedding of Arindam and Trisha."
+  title: "Pallavi & Lalit — Wedding Invitation",
+  description: "A celebration of love. Join us for the wedding of Pallavi and Lalit."
 };
 
 export default function RootLayout({ children }) {
   return <html lang="en"><body>{children}</body></html>;
 }
+  
