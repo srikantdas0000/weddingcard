@@ -111,18 +111,36 @@ export default function Home() {
       <section className="couple section">
         <Reveal><p className="eyebrow">WITH LOVE AND BLESSINGS</p><h2>Meet the Couple</h2></Reveal>
         <div className="couple-grid">
-          <Reveal><div className="portrait"><div className="portrait-placeholder">♡</div></div><h3>{config.couple.groom}</h3><p>{config.couple.groomDescription}</p></Reveal>
-          <Reveal><div className="portrait"><div className="portrait-placeholder">♡</div></div><h3>{config.couple.bride}</h3><p>{config.couple.brideDescription}</p></Reveal>
+          <Reveal className="couple-card">
+            <p className="couple-role">The Groom</p>
+            <div className="portrait"><div className="portrait-placeholder">♚</div></div>
+            <h3>Arindam Banerjee</h3>
+            <p>Son of Smt. Rina Banerjee &amp;<br />Shri Subrata Banerjee</p>
+          </Reveal>
+          <div className="couple-love" aria-label="Love symbol"><span>♥</span></div>
+          <Reveal className="couple-card">
+            <p className="couple-role">The Bride</p>
+            <div className="portrait"><div className="portrait-placeholder">♛</div></div>
+            <h3>Trisha Sen</h3>
+            <p>Daughter of Smt. Mamata Sen &amp;<br />Shri Debashish Sen</p>
+          </Reveal>
         </div>
-        <Reveal><p className="blessing">{config.wedding.message}</p></Reveal>
+        <Reveal className="couple-card couple-blessing">
+          <p className="blessing">"Under the celestial canopy of love and divine grace, two hearts unite in sacred matrimony to walk as one forever."</p>
+          <p className="family-compliments">— With Best Compliments From Banerjee &amp; Sen Families</p>
+        </Reveal>
       </section>
 
       <section className="count-section section">
         <Reveal><p className="eyebrow">THE COUNTDOWN BEGINS</p><h2>Save The Date</h2><p>{config.wedding.dateLabel}</p><Countdown date={config.wedding.isoDate} /></Reveal>
       </section>
 
+      <div className="wedding-divider" aria-hidden="true">
+        <img src="/bengali-wedding-arch-divider.png" alt="" />
+      </div>
+
       <section className="events section">
-        <Reveal><div className="ornament">✿　❧　✿</div><p className="eyebrow">JOIN OUR CELEBRATION</p><h2>Wedding Events</h2></Reveal>
+        <Reveal><p className="eyebrow">JOIN OUR CELEBRATION</p><h2>Wedding Events</h2></Reveal>
         {config.events.map((event, index) => <Reveal key={event.name}>
           <article className="event-card">
             <span className="event-number">EVENT 0{index + 1}</span>
